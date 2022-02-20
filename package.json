@@ -2,7 +2,10 @@
   "name": "vigilant-pancake",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ryanbarr/vigilant-pancake.git"
@@ -12,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/ryanbarr/vigilant-pancake/issues"
   },
-  "homepage": "https://github.com/ryanbarr/vigilant-pancake#readme"
+  "homepage": "https://github.com/ryanbarr/vigilant-pancake#readme",
+  "devDependencies": {
+    "electron": "^17.0.1",
+    "prettier": "2.5.1"
+  }
 }
