@@ -1,0 +1,16 @@
+{
+  "name": "vigilant-pancake",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanbarr/vigilant-pancake.git"
+  },
+  "author": "Ryan Barr",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/ryanbarr/vigilant-pancake/issues"
+  },
+  "homepage": "https://github.com/ryanbarr/vigilant-pancake#readme"
+}
