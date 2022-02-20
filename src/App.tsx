@@ -1,10 +1,14 @@
 import React from "react";
+import { HashRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
 
 const App = () => {
   return (
-    <>
-      <h2 className="text-blue-300 text-8xl">Hello from React!</h2>
-    </>
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </HashRouter>
   );
 };
 
