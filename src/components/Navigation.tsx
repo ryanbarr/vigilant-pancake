@@ -1,4 +1,5 @@
-import { Link, LinkProps } from "react-router-dom";
+import { ReactNode } from "react";
+import { Link, LinkProps, To } from "react-router-dom";
 
 const NavigationLink = ({ to, children }: LinkProps) => {
   return (
@@ -11,16 +12,27 @@ const NavigationLink = ({ to, children }: LinkProps) => {
   );
 };
 
+type NavigationItem = {
+  to: To;
+  label: string;
+};
+
+const navigation: NavigationItem[] = [
+  { to: "/", label: "Dashboard" },
+  { to: "/overlays", label: "Overlays" },
+  { to: "/settings", label: "Settings" },
+];
+
 const Navigation = () => {
   return (
     <div className="bg-indigo-900 h-full">
       <ul>
-        <li>
-          <NavigationLink to="/">Home</NavigationLink>
-        </li>
-        <li>
-          <NavigationLink to="/test">Test</NavigationLink>
-        </li>
+        {navigation &&
+          navigation.map((item) => (
+            <li key={item.label}>
+              <NavigationLink to={item.to}>{item.label}</NavigationLink>
+            </li>
+          ))}
       </ul>
     </div>
   );
