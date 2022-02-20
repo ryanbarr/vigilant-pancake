@@ -1,8 +1,7 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from "react";
 
-function render() {
-  ReactDOM.render(<h2>Hello from React!</h2>, document.body);
+const App = () => {
+  return <><h2 className="text-red-500 text-8xl">Hello from React!</h2></>;
 }
 
-render();
+export default App;
