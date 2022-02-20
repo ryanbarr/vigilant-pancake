@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
+import { Home, Icon, Layout, Settings } from "react-feather";
 import { Link, LinkProps, To } from "react-router-dom";
 
 const NavigationLink = ({ to, children }: LinkProps) => {
   return (
     <Link
       to={to}
-      className="text-white px-6 py-6 inline-block w-full hover:bg-indigo-700"
+      className="text-white px-6 py-6 w-full hover:bg-indigo-700 flex"
     >
       {children}
     </Link>
@@ -15,12 +15,13 @@ const NavigationLink = ({ to, children }: LinkProps) => {
 type NavigationItem = {
   to: To;
   label: string;
+  icon?: Icon;
 };
 
 const navigation: NavigationItem[] = [
-  { to: "/", label: "Dashboard" },
-  { to: "/overlays", label: "Overlays" },
-  { to: "/settings", label: "Settings" },
+  { to: "/", label: "Dashboard", icon: Home },
+  { to: "/overlays", label: "Overlays", icon: Layout },
+  { to: "/settings", label: "Settings", icon: Settings },
 ];
 
 const Navigation = () => {
@@ -30,7 +31,10 @@ const Navigation = () => {
         {navigation &&
           navigation.map((item) => (
             <li key={item.label}>
-              <NavigationLink to={item.to}>{item.label}</NavigationLink>
+              <NavigationLink to={item.to}>
+                <item.icon className="mr-3" />
+                <span>{item.label}</span>
+              </NavigationLink>
             </li>
           ))}
       </ul>
