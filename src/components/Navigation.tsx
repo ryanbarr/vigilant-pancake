@@ -1,11 +1,23 @@
 import { Home, Icon, Layout, Settings } from "react-feather";
-import { Link, LinkProps, To } from "react-router-dom";
+import {
+  Link,
+  LinkProps,
+  To,
+  useMatch,
+  useResolvedPath,
+} from "react-router-dom";
+import classNames from "classnames";
 
 const NavigationLink = ({ to, children }: LinkProps) => {
+  const resolved = useResolvedPath(to);
+  const isActive = useMatch({ path: resolved.pathname, end: true });
+
   return (
     <Link
       to={to}
-      className="text-white px-6 py-6 w-full hover:bg-indigo-700 flex"
+      className={classNames("text-white px-6 py-6 hover:bg-gray-700 flex", {
+        "bg-indigo-700": isActive,
+      })}
     >
       {children}
     </Link>
@@ -26,14 +38,16 @@ const navigation: NavigationItem[] = [
 
 const Navigation = () => {
   return (
-    <div className="bg-indigo-900 h-full">
+    <div className="bg-gray-800 h-full">
       <ul>
         {navigation &&
           navigation.map((item) => (
             <li key={item.label}>
               <NavigationLink to={item.to}>
-                <item.icon className="mr-3" />
-                <span>{item.label}</span>
+                <item.icon />
+                <span className="sr-only" aria-label={item.label}>
+                  {item.label}
+                </span>
               </NavigationLink>
             </li>
           ))}
