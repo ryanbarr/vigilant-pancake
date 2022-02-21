@@ -1,4 +1,5 @@
-import { Home, Icon, Layout, Settings } from "react-feather";
+import classNames from "classnames";
+import { Box, Cpu, Grid, Home, Icon, Layout, Settings } from "react-feather";
 import {
   Link,
   LinkProps,
@@ -6,7 +7,6 @@ import {
   useMatch,
   useResolvedPath,
 } from "react-router-dom";
-import classNames from "classnames";
 
 const NavigationLink = ({ to, children }: LinkProps) => {
   const resolved = useResolvedPath(to);
@@ -33,6 +33,9 @@ type NavigationItem = {
 const navigation: NavigationItem[] = [
   { to: "/", label: "Dashboard", icon: Home },
   { to: "/overlays", label: "Overlays", icon: Layout },
+  { to: "/components", label: "Components", icon: Box },
+  { to: "/bot", label: "Bot Management", icon: Cpu },
+  { to: "/extensions", label: "Extensions", icon: Grid },
   { to: "/settings", label: "Settings", icon: Settings },
 ];
 
