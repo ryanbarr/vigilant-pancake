@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import { BrowserWindow } from "electron";
 import {
   Box,
   Cpu,
@@ -21,7 +20,8 @@ import {
 const twitchScopes = ["user:read:email"];
 const twitchAuthUrl =
   `https://id.twitch.tv/oauth2/authorize` +
-  `?client_id=${process.env.TWITCH_CLIENT_ID}` +
+  // @ts-ignore
+  `?client_id=${window.envVars.TWITCH_CLIENT_ID}` +
   `&redirect_uri=http://localhost/login` +
   `&response_type=token` +
   `&scope=${twitchScopes.join(" ")}`;
