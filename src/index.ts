@@ -20,6 +20,29 @@ const createWindow = (): void => {
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
+  // Limit what external pages can be loaded inside of the app.
+  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+    if (url.startsWith("https://id.twitch.tv/oauth2/authorize")) {
+      return { action: "allow" };
+    }
+
+    return { action: "deny" };
+  });
+
+  // Handle redirects to capture auth tokens.
+  mainWindow.webContents.on("did-create-window", (childWindow) => {
+    childWindow.webContents.on("will-navigate", (event, url) => {
+      if (url.startsWith("http://localhost/login")) {
+        event.preventDefault();
+        const newUrl = new URL(url);
+        const params = new URLSearchParams(newUrl.hash.substring(1));
+        const token = params.get("access_token");
+        // TODO: Store our token.
+        childWindow.close();
+      }
+    });
+  });
+
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();
 };
